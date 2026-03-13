@@ -3,21 +3,38 @@ const seededAt = new Date().toISOString()
 let projects = [
   {
     id: 1,
-    name: 'Portfolio web refresh',
-    description: 'Update the visuals and project case studies.',
+    name: 'Residential Electrical Rewiring',
+    description:
+      'Replace old electrical wires in a house to make the power system safer and more reliable.',
     created_at: seededAt,
     updated_at: seededAt,
   },
   {
     id: 2,
-    name: 'Desgign system Workshop',
-    description: 'Prepare teaching material for the class workshop.',
+    name: 'Kitchen Renovation',
+    description:
+      'Update a kitchen by adding new cabinets, counters, and basic improvements.',
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 3,
+    name: 'Bathroom Plumbing Installation',
+    description: 'Add new water pipes and drains for a bathroom.',
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 4,
+    name: 'Custom Deck Carpentry',
+    description:
+      'Build a wooden deck in the backyard with steps and a railing.',
     created_at: seededAt,
     updated_at: seededAt,
   },
 ]
 
-let nextProjectId = 3
+let nextProjectId = 5
 
 function clone(item) {
   return { ...item }
