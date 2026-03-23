@@ -38,34 +38,79 @@ let tasks = [
   {
     id: 1,
     project_id: 1,
-    title: 'Draft homepage wireframes',
-    description: 'Create desktop and mobile layout drafts.',
-    status: 'in_progress',
+    title: 'Turn off power',
+    description: 'Make sure the electricity is off before starting work.',
+    status: 'done',
     created_at: seededAt,
     updated_at: seededAt,
   },
   {
     id: 2,
     project_id: 1,
-    title: 'Collect new screenshots',
-    description: 'Replace old portfolio images.',
-    status: 'todo',
+    title: 'Replace old wires',
+    description: 'Take out old wires and put in new ones.',
+    status: 'in_progress',
     created_at: seededAt,
     updated_at: seededAt,
   },
   {
     id: 3,
     project_id: 2,
-    title: 'Finalize slide deck',
-    description: 'Include examples of good API design.',
+    title: 'Clear out kitchen',
+    description: 'Remove old cabinets and clean the space.',
     status: 'done',
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 4,
+    project_id: 2,
+    title: 'Put in new cabinets',
+    description: 'Install the new kitchen cabinets.',
+    status: 'todo',
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 5,
+    project_id: 3,
+    title: 'Lay pipes',
+    description: 'Set up pipes for water to flow in and out.',
+    status: 'in_progress',
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 6,
+    project_id: 3,
+    title: 'Check for leaks',
+    description: 'Run water and make sure nothing is leaking.',
+    status: 'todo',
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 7,
+    project_id: 4,
+    title: 'Mark deck area',
+    description: 'Outline where the deck will go in the yard.',
+    status: 'done',
+    created_at: seededAt,
+    updated_at: seededAt,
+  },
+  {
+    id: 8,
+    project_id: 4,
+    title: 'Build base',
+    description: 'Start building the main base of the deck.',
+    status: 'in_progress',
     created_at: seededAt,
     updated_at: seededAt,
   },
 ]
 
 let nextProjectId = 5
-let nextTaskId = 4
+let nextTaskId = 9
 
 function clone(item) {
   return { ...item }
