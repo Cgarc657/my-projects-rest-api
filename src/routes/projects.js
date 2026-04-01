@@ -1,13 +1,14 @@
 import { Hono } from 'hono'
+import { getDb } from '../data/db.js'
+import { createTask, listTasksByProject } from '../data/store.js'
 import {
   listProjects,
-  getProjectById,
   createProject,
   updateProject,
   deleteProject,
-  createTask,
-  listTasksByProject,
-} from '../data/store.js'
+  getProjectById,
+} from '../data/projects.repository.js'
+
 import { parseJsonBody } from '../utils/body.js'
 import { ApiError } from '../utils/errors.js'
 import { sendCollection, sendResource } from '../utils/response.js'
@@ -20,8 +21,9 @@ import {
 
 const projects = new Hono()
 
-projects.get('/', (c) => {
-  const data = listProjects()
+projects.get('/', async (c) => {
+  const db = getDb(c.env.DB)
+  const data = await listProjects(db)
   return sendCollection(c, data)
 })
 
@@ -37,15 +39,16 @@ projects.post('/', async (c) => {
       details,
     )
   }
-
-  const project = createProject(payload)
+  const db = getDb(c.env.DB)
+  const project = await createProject(db, payload)
   c.header('Location', `/api/projects/${project.id}`)
   return sendResource(c, project, 201)
 })
 
 projects.get('/:id/tasks', async (c) => {
   const projectId = parseIdParam(c.req.param('id'))
-  const project = getProjectById(projectId)
+  const db = getDb(c.env.DB)
+  const project = await getProjectById(db, projectId)
 
   if (!project) {
     throw new ApiError(404, 'NOT_FOUND', 'Project not found.')
@@ -57,7 +60,8 @@ projects.get('/:id/tasks', async (c) => {
 
 projects.post('/:id/tasks', async (c) => {
   const projectId = parseIdParam(c.req.param('id'))
-  const project = getProjectById(projectId)
+  const db = getDb(c.env.DB)
+  const project = await getProjectById(db, projectId)
 
   if (!project) {
     throw new ApiError(404, 'NOT_FOUND', 'Project not found.')
@@ -80,9 +84,11 @@ projects.post('/:id/tasks', async (c) => {
   return sendResource(c, task, 201)
 })
 
-projects.get('/:id', (c) => {
+projects.get('/:id', async (c) => {
   const id = parseIdParam(c.req.param('id'))
-  const project = getProjectById(id)
+
+  const db = getDb(c.env.DB)
+  const project = await getProjectById(db, id)
 
   if (!project) {
     throw new ApiError(404, 'NOT_FOUND', 'Project not found.')
@@ -104,8 +110,8 @@ projects.patch('/:id', async (c) => {
       details,
     )
   }
-
-  const updatedProject = updateProject(id, payload)
+  const db = getDb(c.env.DB)
+  const updatedProject = await updateProject(db, id, payload)
 
   if (!updatedProject) {
     throw new ApiError(404, 'NOT_FOUND', 'Project not found.')
@@ -114,9 +120,10 @@ projects.patch('/:id', async (c) => {
   return sendResource(c, updatedProject)
 })
 
-projects.delete('/:id', (c) => {
+projects.delete('/:id', async (c) => {
   const id = parseIdParam(c.req.param('id'))
-  const deleted = deleteProject(id)
+  const db = getDb(c.env.DB)
+  const deleted = await deleteProject(db, id)
 
   if (!deleted) {
     throw new ApiError(404, 'NOT_FOUND', 'Project not found.')
