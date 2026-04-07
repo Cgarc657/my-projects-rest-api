@@ -8,6 +8,20 @@
       "when": 1775002499847,
       "tag": "0000_green_smiling_tiger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1775586041587,
+      "tag": "0001_minor_retro_girl",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1775586978121,
+      "tag": "0002_open_adam_destine",
+      "breakpoints": true
     }
   ]
 }
