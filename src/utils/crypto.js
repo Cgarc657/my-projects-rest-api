@@ -1,4 +1,4 @@
-import bcryptjs from 'bcrypt.js'
+import bcryptjs from 'bcryptjs'
 import { BCRYPT_ROUNDS } from './constants'
 
 export async function hashPassword(plain) {
