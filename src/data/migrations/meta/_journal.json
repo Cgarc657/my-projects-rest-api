@@ -22,6 +22,13 @@
       "when": 1775586978121,
       "tag": "0002_open_adam_destine",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1776111793819,
+      "tag": "0003_common_moira_mactaggert",
+      "breakpoints": true
     }
   ]
 }
